@@ -5,6 +5,7 @@ This sample shows how you can use synchronize datasets from IMDb to Optimizely G
 ## Documentation
 - [Understanding your data](https://docs.developers.optimizely.com/digital-experience-platform/v1.4.0-content-graph/docs/understanding-your-data)
 - [Defining the content types](https://docs.developers.optimizely.com/digital-experience-platform/v1.4.0-content-graph/docs/defining-the-content-types)
+- [Synchronize your data](https://docs.developers.optimizely.com/digital-experience-platform/v1.4.0-content-graph/docs/synchronize-your-data)
 - [Consume data with queries](https://docs.developers.optimizely.com/digital-experience-platform/v1.4.0-content-graph/docs/consume-data-with-queries)
 
 ## Prerequisites
