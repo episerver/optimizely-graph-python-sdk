@@ -101,7 +101,7 @@ def is_last(itr):
 
 
 # reset_data()
-# load_schemas()
+load_schemas()
 load_data(NAME_BASICS_FILE, "Actor")
 load_data(TITLE_BASICS_FILE, "Title")
 load_data(TITLE_RATINGS_FILE, "Rating")
