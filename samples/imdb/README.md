@@ -17,7 +17,7 @@ This sample shows how you can use synchronize datasets from IMDb to Optimizely G
 - Install required packages with `pip install -r requirements.txt`
 - Index the data by running this command:
   - `AUTH_TOKEN=<AUTH_TOKEN> HOST=https://cg.optimizely.com python3 index_data.py`
-  - Use the environment variables `AUTH_TOKEN` and `HOST` to configure
+  - Use the environment variables `AUTH_TOKEN` and `HOST` to configure, where `AUTH_TOKEN` is the basic authentication token excluding the `basic` keyword.
   - The script will terminate when it finished and in the console the following logs will be printed:
   - ```
     DEBUG:urllib3.connectionpool:https://cg.optimizely.com:443 "POST /api/content/v2/data?id=imdb HTTP/1.1" 200 None
@@ -29,6 +29,8 @@ This sample shows how you can use synchronize datasets from IMDb to Optimizely G
 - Run the sample web application and try out the pre-configured Optimizely Graph queries in GraphQL:
   - Run `python3 app.py`
   - Open browser en go to http://localhost:7001/
+  - When you enter `fred astaire`, you should see this:
+    ![example of search](images/example1.png "Example")
 
 ## Contributions
 - Contributions are welcome! Feel free to create a PR.
