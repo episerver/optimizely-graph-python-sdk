@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Demo by JZ</title>
+    <link rel="stylesheet" href="{{ url_for('static',filename='style.css') }}">
+</head>
+<body>
+<h1>Ratings</h1>
+Go to:
+<ul>
+    <li><a href="/">Home</a></li>
+    <li><a href="/actors">Actors</a></li>
+    <li><a href="/ratings">Ratings</a></li>
+</ul>
+<div class="wrap">
+    <div class="search">
+        <form action="/search">
+            <input class="searchTerm" type="text" placeholder="Search for names or titles..." name="query">
+            <button class="searchButton" type="submit">Search</button>
+        </form>
+    </div>
+</div>
+{% if query is defined and query|length > 0 %}
+<h2>Searched for: {{ query }}</h2>
+{% endif %}
+<h3>Number of hits: {{ hits }}</h3>
+<table>
+    <tbody>
+    <tr>
+        <th>Rank</th>
+        <th>Average Rating</th>
+        <th>Number of votes</th>
+        <th>Title</th>
+        <th>Names</th>
+    </tr>
+    {% for i in range(0, len) %}
+    <tr>
+        <td class="rowNumber">{{ i + 1 }}</td>
+        <td>{{ items[i]["averageRating"] }}</td>
+        <td>{{ items[i]["numVotes"] }}</td>
+        <td>
+            <table class="innerTable">
+                <tbody>
+                {% for key in items[i]["linkWithDefaultType"]["Title"]["items"]%}
+                <tr>
+                    <td> {{ key["primaryTitle"] }}</td>
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </td>
+        <td>
+            <table class="innerTable">
+                <tbody>
+                {% for key in items[i]["linkWithTitleToActor"]["Actor"]["items"]%}
+                <tr>
+                    <td> {{ key["primaryName"] }}</td>
+                    <td>
+                        <table>
+                            <tbody>
+                            <tr>
+                                <th>title</th>
+                                <th>genres</th>
+                            </tr>
+                            {% if key["_link"]["Title"]["items"]|count > 0 %}
+                            {% for key in key["_link"]["Title"]["items"]%}
+                            <tr>
+                                <td>{{ key["primaryTitle"] }}</td>
+                                <td>{{ ", ".join(key["genres"]) }}</td>
+                            </tr>
+                            {% endfor %}
+                            {% else %}
+                            <tr>
+                                <td>-</td>
+                                <td>-</td>
+                            </tr>
+                            {% endif %}
+                            </tbody>
+                        </table>
+                    </td>
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </td>
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
+</body>
+</html>

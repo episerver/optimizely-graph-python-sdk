@@ -1,0 +1,58 @@
+@import url(https://fonts.googleapis.com/css?family=Open+Sans);
+table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+th, td {
+    padding: 5px;
+    vertical-align: top;
+}
+th {
+    text-align: left;
+    width: 200px;
+    background-color: khaki;
+}
+body{
+    background: #f2f2f2;
+    font-family: 'Open Sans', sans-serif;
+}
+.search {
+    width: 100%;
+    position: relative;
+    display: flex;
+}
+.searchTerm {
+    border: 1px solid #000000;
+    padding: 5px;
+    height: 30px;
+    width:400px;
+    font-size: 16pt;
+}
+.searchButton {
+    border: 1px solid #000000;
+    padding: 5px;
+    height: 40px;
+    border-radius: 5px 5px 5px 5px;
+}
+.name {
+    background-color: aqua;
+}
+.title {
+    background-color: chartreuse;
+}
+.rowNumber {
+    font-weight: bolder;
+}
+.innerTable {
+    border: 1px solid black;
+    border-collapse: collapse;
+    background-color: aliceblue;
+}
+/*Resize the wrap to see the search bar change!*/
+.wrap{
+    width: 30%;
+    position: absolute;
+    top: 10%;
+    left: 40%;
+    transform: translate(-50%, -50%);
+}

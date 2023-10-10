@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Demo by JZ</title>
+    <link rel="stylesheet" href="{{ url_for('static',filename='style.css') }}">
+</head>
+<body>
+<h1>Actors</h1>
+Go to:
+<ul>
+    <li><a href="/">Home</a></li>
+    <li><a href="/actors">Actors</a></li>
+    <li><a href="/ratings">Ratings</a></li>
+</ul>
+<div class="wrap">
+    <div class="search">
+        <form action="/search">
+            <input class="searchTerm" type="text" placeholder="Search for names or titles..." name="query">
+            <button class="searchButton" type="submit">Search</button>
+        </form>
+    </div>
+</div>
+{% if query is defined and query|length > 0 %}
+<h2>Searched for: {{ query }}</h2>
+{% endif %}
+<h3>Number of hits: {{ hits }}</h3>
+<table>
+    <tbody>
+    {% for i in range(0, len) %}
+    <tr>
+        <td class="rowNumber">{{ i + 1 }}</td>
+        <td>{{ actors[i]["primaryName"] }}</td>
+        <td>{{ ", ".join(actors[i]["primaryProfession"]) }}</td>
+        <td>{{ actors[i]["birthYear"] }}</td>
+        <td>{{ actors[i]["deathYear"] }}</td>
+        <td>
+            <table>
+                <tbody>
+                <tr><th>title</th><th>genres</th><th>score</th><th>votes</th></tr>
+                {% if actors[i]["_link"]["Title"]["items"]|count > 0 %}
+                {% for key in actors[i]["_link"]["Title"]["items"]%}
+                <tr>
+                    <td>{{ key["primaryTitle"] }}</td>
+                    <td>{{ ", ".join(key["genres"]) }}</td>
+                    {% if key["_link"]["Rating"]["items"]|count == 1 %}
+                    <td>{{ key["_link"]["Rating"]["items"][0]["averageRating"] }}</td>
+                    <td>{{ key["_link"]["Rating"]["items"][0]["numVotes"] }}</td>
+                    {% endif %}
+                </tr>
+                {% endfor %}
+                {% else %}
+                <tr>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                </tr>
+                {% endif %}
+                </tbody>
+            </table>
+        </td>
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
+</body>
+</html>

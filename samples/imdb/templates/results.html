@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Demo by JZ</title>
+    <link rel="stylesheet" href="{{ url_for('static',filename='style.css') }}">
+</head>
+<body>
+<h1>Results</h1>
+Go to:
+<ul>
+    <li><a href="/">Home</a></li>
+    <li><a href="/actors">Actors</a></li>
+    <li><a href="/ratings">Ratings</a></li>
+</ul>
+<div class="wrap">
+    <div class="search">
+        <form action="/search">
+            <input class="searchTerm" type="text" placeholder="Search for names or titles..." name="query">
+            <button class="searchButton" type="submit">Search</button>
+        </form>
+    </div>
+</div>
+{% if query is defined and query|length > 0 %}
+<h2>Searched for: {{ query }}</h2>
+{% endif %}
+<h3>Number of hits: {{ hits }}</h3>
+<table>
+    <tbody>
+    {% for i in range(0, len) %}
+    <tr>
+        <td class="rowNumber">{{ i + 1 }}</td>
+        {% if items[i]["__typename"] == "Actor" %}
+        <td class="name">{{ items[i]["__typename"] }}</td>
+        <td>{{ items[i]["primaryName"] }}</td>
+        <td>{{ ", ".join(items[i]["primaryProfession"]) }}</td>
+        <td>{{ items[i]["birthYear"] }}</td>
+        <td>{{ items[i]["deathYear"] }}</td>
+        <td>
+            <table class="innerTable">
+                <tbody>
+                <tr>
+                    <th>Title</th>
+                    <th>Genres</th>
+                    <th>Score</th>
+                    <th>Votes</th>
+                </tr>
+                {% if items[i]["_link"]["Title"]["items"]|count > 0 %}
+                {% for key in items[i]["_link"]["Title"]["items"]%}
+                <tr>
+                    <td>{{ key["primaryTitle"] }}</td>
+                    <td>{{ ", ".join(key["genres"]) }}</td>
+                    {% if key["_link"]["Rating"]["items"]|count == 1 %}
+                    <td>{{ key["_link"]["Rating"]["items"][0]["averageRating"] }}</td>
+                    <td>{{ key["_link"]["Rating"]["items"][0]["numVotes"] }}</td>
+                    {% endif %}
+                </tr>
+                {% endfor %}
+                {% else %}
+                <tr>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                </tr>
+                {% endif %}
+                </tbody>
+            </table>
+            {% endif %}
+            {% if items[i]["__typename"] == "Title" %}
+        <td class="title">{{ items[i]["__typename"] }}</td>
+        <td>{{ items[i]["primaryTitle"] }}</td>
+        <td>{{ ", ".join(items[i]["genres"]) }}</td>
+        <td>
+            <table class="innerTable">
+                <tbody>
+                <tr>
+                    <th>Actor</th>
+                    <th>Profession</th>
+                    <th>Born</th>
+                    <th>Died</th>
+                </tr>
+                {% if items[i]["actors"]["Actor"]["items"]|count > 0 %}
+                {% for key in items[i]["actors"]["Actor"]["items"]%}
+                <tr>
+                    <td> {{ key["primaryName"] }}</td>
+                    <td> {{ ", ".join(key["primaryProfession"]) }}</td>
+                    <td> {{ key["birthYear"] }}</td>
+                    <td> {{ key["deathYear"] }}</td>
+                </tr>
+                {% endfor %}
+                {% else %}
+                <tr>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                </tr>
+                {% endif %}
+                </tbody>
+            </table>
+        </td>
+        <td>
+            <table class="innerTable">
+                <tbody>
+                <tr>
+                    <th>Rating</th>
+                    <th>Votes</th>
+                </tr>
+                {% for key in items[i]["ratings"]["Rating"]["items"]%}
+                <tr>
+                    <td> {{ key["averageRating"] }}</td>
+                    <td> {{ key["numVotes"] }}</td>
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </td>
+        {% endif %}
+        </td>
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
+</body>
+</html>

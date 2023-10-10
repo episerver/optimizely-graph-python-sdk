@@ -1,0 +1,122 @@
+{
+  "label": "IMDB",
+  "languages": [
+    "en"
+  ],
+  "links": {
+    "DEFAULT": {
+      "from": "knownForTitles",
+      "to": "tconst"
+    },
+    "TITLES": {
+      "from": "tconst",
+      "to": "tconst"
+    },
+    "TITLE_TO_ACTOR": {
+      "from": "tconst",
+      "to": "knownForTitles"
+    }
+  },
+  "contentTypes": {
+    "Record": {
+      "abstract": true,
+      "contentType": [],
+      "properties": {
+        "ContentType": {
+          "type": "[String]"
+        }
+      }
+    },
+    "Actor": {
+      "contentType": [
+        "Record"
+      ],
+      "properties": {
+        "nconst": {
+          "type": "String"
+        },
+        "tconst": {
+          "type": "String"
+        },
+        "ContentType": {
+          "type": "[String]"
+        },
+        "primaryName": {
+          "type": "String",
+          "searchable": true
+        },
+        "birthYear": {
+          "type": "Int"
+        },
+        "deathYear": {
+          "type": "Int"
+        },
+        "primaryProfession": {
+          "type": "[String]",
+          "searchable": true
+        },
+        "knownForTitles": {
+          "type": "[String]"
+        }
+      }
+    },
+    "Title": {
+      "contentType": [
+        "Record"
+      ],
+      "properties": {
+        "tconst": {
+          "type": "String"
+        },
+        "ContentType": {
+          "type": "[String]"
+        },
+        "titleType": {
+          "type": "String"
+        },
+        "primaryTitle": {
+          "type": "String",
+          "searchable": true
+        },
+        "originalTitle": {
+          "type": "String"
+        },
+        "isAdult": {
+          "type": "Boolean"
+        },
+        "startYear": {
+          "type": "Int"
+        },
+        "endYear": {
+          "type": "Int"
+        },
+        "runtimeMinutes": {
+          "type": "Int"
+        },
+        "genres": {
+          "type": "[String]",
+          "searchable": true
+        }
+      }
+    },
+    "Rating": {
+      "contentType": [
+        "Record"
+      ],
+      "properties": {
+        "tconst": {
+          "type": "String"
+        },
+        "ContentType": {
+          "type": "[String]"
+        },
+        "averageRating": {
+          "type": "Float"
+        },
+        "numVotes": {
+          "type": "Int"
+        }
+      }
+    }
+  }
+}
