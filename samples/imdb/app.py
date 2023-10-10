@@ -5,7 +5,7 @@ from gql.transport.aiohttp import AIOHTTPTransport
 app = Flask(__name__)
 
 OG_ENDPOINT = "http://localhost:4000/content/v2?auth=PUTliAQZzXXGQWccncDMFmtZ3rFbBZfQVFBrriYNjDI0ebKm"
-# OG_ENDPOINT = "https://dev.cg.optimizely.com/content/v2?auth=N2PWA5gDRbJpmemmhYXPTqtlSffJu5NMIOCg3equkDaKuKCv"
+
 transport = AIOHTTPTransport(
     url=OG_ENDPOINT)
 client = Client(transport=transport, fetch_schema_from_transport=True)
@@ -154,10 +154,7 @@ query MyQuery {
 
 @app.route('/')
 def hello():
-    result = client.execute(query_actors_default)
-    actors = result["Actor"]["items"]
-    hits = result["Actor"]["total"]
-    return render_template('index.html', len=len(actors), actors=actors, hits=hits)
+    return render_template('index.html')
 
 
 @app.route('/actors')

@@ -27,6 +27,7 @@ This sample shows how you can use synchronize datasets from IMDb to Optimizely G
     INFO:root:{"journalId":"stream/59f6858c-0bce-4d96-aac3-b46daa49981d"}
     ```
 - Run the sample web application and try out the pre-configured Optimizely Graph queries in GraphQL:
+  - Set the endpoint top Optimizely Graph with the public key in `OG_ENDPOINT` in `app.py`
   - Run `python3 app.py`
   - Open browser en go to http://localhost:7001/
   - When you enter `fred astaire`, you should see this:
