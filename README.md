@@ -7,7 +7,8 @@ This repository contains the samples for the Content Graph with Python.
 
 ## Samples
 We have the following samples, please check the README file of each sample for more details.
-- IMDb sample site using [non-commercial datasets from IMDb](https://developer.imdb.com/non-commercial-datasets/)
+- How to use Optimizely Graph to aggregate on multiple sources using joins with the special `_link` field, and use of semantic search. It is an IMDb sample site using [non-commercial datasets from IMDb](https://developer.imdb.com/non-commercial-datasets/)
+- How to use Optimizely Graph to build an AI-driven chatbot on your content. It also uses IMDb data, but a different dataset.
 
 ## Prerequisites
 - Python 3
