@@ -1,0 +1,56 @@
+{
+  "label": "IMDB2",
+  "languages": [
+    "en"
+  ],
+  "contentTypes": {
+    "Record": {
+      "abstract": true,
+      "contentType": [],
+      "properties": {
+        "ContentType": {
+          "type": "[String]"
+        }
+      }
+    },
+    "Movie": {
+      "contentType": [
+        "Record"
+      ],
+      "properties": {
+        "id": {
+          "type": "String"
+        },
+        "ContentType": {
+          "type": "[String]"
+        },
+        "genre": {
+          "type": "[String]",
+          "searchable": true
+        },
+        "year": {
+          "type": "String"
+        },
+        "title": {
+          "type": "String",
+          "searchable": true
+        },
+        "certificate": {
+          "type": "String"
+        },
+        "overview": {
+          "type": "String",
+          "searchable": true
+        },
+        "director": {
+          "type": "String",
+          "searchable": true
+        },
+        "cast": {
+          "type": "[String]",
+          "searchable": true
+        }
+      }
+    }
+  }
+}
